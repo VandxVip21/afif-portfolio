@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { IoLocationOutline, IoCallOutline, IoMailOutline, IoLogoFacebook, IoLogoTwitter, IoLogoLinkedin, IoLogoYoutube, IoPersonCircle, IoMail, IoCall, IoChatbubbles } from 'react-icons/io5';
+import { IoLocationOutline, IoCallOutline, IoMailOutline, IoLogoGithub, IoLogoLinkedin, IoPersonCircle, IoMail, IoCall, IoChatbubbles } from 'react-icons/io5';
 import { useLanguage } from '../context/LanguageContext';
 import { db } from '../firebase';
 import { ref, push, serverTimestamp } from 'firebase/database';
@@ -67,7 +67,7 @@ const Contact = () => {
             </div>
             <div className="wrapper">
               <h3 className="h4 contact-item-title">{t('contact_phone')}</h3>
-              <a href="tel:+6285729874118" className="contact-info">+62-857-2987-4118</a>
+              <a href="tel:+628778584341" className="contact-info">+62-877-8584-341</a>
             </div>
           </li>
 
@@ -84,27 +84,15 @@ const Contact = () => {
           <li>
             <ul className="contact-social-list">
               <li>
-                <a href="#" className="contact-social-link">
-                  <div className="tooltip">Facebook</div>
-                  <IoLogoFacebook />
-                </a>
-              </li>
-              <li>
-                <a href="#" className="contact-social-link">
-                  <div className="tooltip">Twitter</div>
-                  <IoLogoTwitter />
+                <a href="https://github.com/VandxVip21" className="contact-social-link" target="_blank" rel="noopener noreferrer">
+                  <div className="tooltip">Github</div>
+                  <IoLogoGithub />
                 </a>
               </li>
               <li>
                 <a href="https://www.linkedin.com/in/m-afif-abiyyu-a57a4a30b" className="contact-social-link" target="_blank" rel="noopener noreferrer">
                   <div className="tooltip">Linkedin</div>
                   <IoLogoLinkedin />
-                </a>
-              </li>
-              <li>
-                <a href="#" className="contact-social-link">
-                  <div className="tooltip">Youtube</div>
-                  <IoLogoYoutube />
                 </a>
               </li>
             </ul>

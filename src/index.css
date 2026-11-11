@@ -642,6 +642,7 @@ body.dark_theme .hero-title {
   transition: all var(--transition-normal);
   position: relative;
   overflow: hidden;
+  cursor: default;
 }
 
 .stats-card::before {
