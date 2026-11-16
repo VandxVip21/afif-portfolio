@@ -30,7 +30,7 @@ const Education = () => {
                 <div className="timeline-card">
                   <h4 className="timeline-title">{t('edu_1_school')}</h4>
                   <p className="timeline-subtitle">{t('edu_1_degree')}</p>
-                  <span className="timeline-date">2020 - Present</span>
+                  <span className="timeline-date">2021 - Present</span>
                 </div>
               </div>
               
