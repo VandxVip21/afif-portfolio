@@ -1,4 +1,7 @@
 import { useState, useEffect } from 'react';
+import Lenis from 'lenis';
+import { domAnimation, LazyMotion, useReducedMotion } from 'framer-motion';
+import 'lenis/dist/lenis.css';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Stats from './components/Stats';
@@ -9,14 +12,31 @@ import Projects from './components/Projects';
 import Education from './components/Education';
 import Contact from './components/Contact';
 import Inbox from './components/Inbox';
+import ScrollProgress from './components/ScrollProgress';
 import { LanguageProvider } from './context/LanguageContext';
 import useScrollReveal from './hooks/useScrollReveal';
 
 function AppContent() {
+  const shouldReduceMotion = useReducedMotion();
   useScrollReveal();
-  
+
+  useEffect(() => {
+    if (shouldReduceMotion) return undefined;
+
+    const lenis = new Lenis({
+      lerp: 0.08,
+      smoothWheel: true,
+      smoothTouch: true,
+      anchors: true,
+      autoRaf: true
+    });
+
+    return () => lenis.destroy();
+  }, [shouldReduceMotion]);
+
   return (
-    <>
+    <LazyMotion features={domAnimation}>
+      <ScrollProgress />
       <Header />
       <main>
         <article className="container">
@@ -30,7 +50,7 @@ function AppContent() {
           <Contact />
         </article>
       </main>
-    </>
+    </LazyMotion>
   );
 }
 

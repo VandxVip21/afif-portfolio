@@ -1,26 +1,30 @@
-import {
-  IoBriefcaseOutline,
-  IoLocationOutline,
-  IoCalendarClearOutline,
-  IoGitNetworkOutline,
-  IoServerOutline,
-  IoOpenOutline
-} from 'react-icons/io5';
+import { IoLocationOutline, IoOpenOutline } from 'react-icons/io5';
+import { useRef, useState } from 'react';
+import { m, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
+import ScrollReveal from './ScrollReveal';
 
 const Experience = () => {
   const { t } = useLanguage();
+  const shouldReduceMotion = useReducedMotion();
+  const [isNetworkOpen, setIsNetworkOpen] = useState(false);
+  const experienceListRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: experienceListRef,
+    offset: ['start 0.8', 'end 0.2']
+  });
+  const timelineScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   const standardExperiences = [
     {
-      title: t('exp_0_title'),
-      company: t('exp_0_company'),
-      location: t('exp_0_location'),
-      mapUrl: 'https://www.google.com/search?q=kartini+hospital&oq=kartini+hospital&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIMCAEQLhgnGK8BGMcBMgcIAhAAGIAEMgcIAxAAGIAEMgcIBBAAGIAEMgcIBRAAGIAEMgcIBhAAGIAEMgYIBxBFGDzSAQgzOTg0ajBqOagCALACAA&sourceid=chrome&source=chrome.ob&ie=UTF-8',
-      date: 'Jan 2026 - Jul 2026',
-      datetime: '2026-01',
-      description: t('exp_0_desc'),
-      tags: ['Network Infrastructure', 'Web Optimization', 'System Security']
+      title: t('exp_2_title'),
+      company: t('exp_2_company'),
+      location: t('exp_2_location'),
+      mapUrl: 'https://www.google.com/search?q=pt+dash+garment+indonesia&oq=PT+dash+garment+indo&gs_lcrp=EgZjaHJvbWUqCggAEAAY4wIYgAQyCggAEAAY4wIYgAQyDQgBEC4YrwEYxwEYgAQyBggCEEUYOTIHCAMQABjvBTIHCAQQABjvBTIHCAUQABjvBTIHCAYQABjvBdIBCDQyMDBqMGo5qAIAsAIA&sourceid=chrome&source=chrome.ob&ie=UTF-8',
+      date: 'Jun 2023 - Jul 2024',
+      datetime: '2023-06',
+      description: t('exp_2_desc'),
+      tags: ['HRIS Dashboard', 'Enterprise Network', 'Server Maintenance', 'IT Operations']
     },
     {
       title: t('exp_1_title'),
@@ -33,19 +37,18 @@ const Experience = () => {
       tags: ['SIMRS Khanza', 'BPJS Bridging', 'Queue Management', 'Database']
     },
     {
-      title: t('exp_2_title'),
-      company: t('exp_2_company'),
-      location: t('exp_2_location'), // "Bandung, Jawa Barat"
-      mapUrl: 'https://www.google.com/search?q=pt+dash+garment+indonesia&oq=PT+dash+garment+indo&gs_lcrp=EgZjaHJvbWUqCggAEAAY4wIYgAQyCggAEAAY4wIYgAQyDQgBEC4YrwEYxwEYgAQyBggCEEUYOTIHCAMQABjvBTIHCAQQABjvBTIHCAUQABjvBTIHCAYQABjvBdIBCDQyMDBqMGo5qAIAsAIA&sourceid=chrome&source=chrome.ob&ie=UTF-8',
-      date: 'Jun 2023 - Jul 2024',
-      datetime: '2023-06',
-      description: t('exp_2_desc'),
-      tags: ['HRIS Dashboard', 'Enterprise Network', 'Server Maintenance', 'IT Operations']
+      title: t('exp_0_title'),
+      company: t('exp_0_company'),
+      location: t('exp_0_location'),
+      mapUrl: 'https://www.google.com/search?q=kartini+hospital&oq=kartini+hospital&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIMCAEQLhgnGK8BGMcBMgcIAhAAGIAEMgcIAhAAGIAEMgcIBBAAGIAEMgcIBRAAGIAEMgcIBhAAGIAEMgYIBxBFGDzSAQgzOTg0ajBqOagCALACAA&sourceid=chrome&source=chrome.ob&ie=UTF-8',
+      date: 'Jan 2026 - Jul 2026',
+      datetime: '2026-01',
+      description: t('exp_0_desc'),
+      tags: ['Network Infrastructure', 'Web Optimization', 'System Security']
     }
   ];
 
   const rsmlMapUrl = 'https://www.google.com/search?q=rs+muhammadiyah+lamongan+maps&sca_esv=ef517bee04313233&sxsrf=AKL5yDipKZZhwCVxeSseB2D7TtiB6dZDGQ%3A1794791048941&ei=iFb6ao_4ONTp4-EPycalwQE&biw=746&bih=746&uact=5&oq=rs+muhammadiyah+lamongan+maps&gs_lp=Egxnd3Mtd2l6LXNlcnAiHXJzIG11aGFtbWFkaXlhaCBsYW1vbmdhbiBtYXBzMgUQIRigAUifDFDVAlibCXABeAGQAQCYAZUBoAH6A6oBAzMuMrgBA8gBAPgBAZgCBaAC8QTCAgUQABiABMICExAuGIAEGIoFGEMYtAcYxwEYrwHCAgoQABiABBiKBRhDwgIGEAAYFhgewgIIEAAYgAQYogSYAwCIBgGSBwMxLjSgB78dsgcDMS40uAfxBMIHBzItMS4yLjLIB1KACAE&sclient=gws-wiz-serp';
-
   const rsmlTags = ['SIMRS Khanza', 'PACS / DICOM', 'EHR / EMR', 'Network Operations (NOC)', 'Server Room', 'CCTV Matrix'];
 
   const lamonganNetwork = [
@@ -87,156 +90,150 @@ const Experience = () => {
     }
   ];
 
+  const renderLocation = (location, mapUrl, company) => (
+    <a
+      className="experience-location"
+      href={mapUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`${location} - ${company}`}
+    >
+      <IoLocationOutline aria-hidden="true" />
+      <span>{location}</span>
+      <IoOpenOutline aria-hidden="true" />
+    </a>
+  );
+
+  const renderTags = (tags) => (
+    <ul className="experience-tags" aria-label={t('skills_tab_skills')}>
+      {tags.slice(0, 4).map((tag) => (
+        <li key={tag}>{tag}</li>
+      ))}
+    </ul>
+  );
+
   return (
-    <section className="project" id="experience">
-      <div className="project-content section-content reveal">
-        <p className="section-subtitle">{t('exp_subtitle')}</p>
-        <h2 className="h3 section-title">{t('exp_title')}</h2>
-        <p className="section-text">{t('exp_text')}</p>
-      </div>
+    <section className="experience-section" id="experience">
+      <div className="experience-inner">
+        <ScrollReveal className="section-content">
+          <p className="section-subtitle">{t('exp_subtitle')}</p>
+          <h2 className="h3 section-title">{t('exp_title')}</h2>
+          <p className="section-text">{t('exp_text')}</p>
+        </ScrollReveal>
 
-      <div className="experience-container">
-        {/* Top 3 Strategic Roles */}
-        <div className="experience-top-grid">
-          {standardExperiences.map((exp, index) => (
-            <div key={index} className="experience-card reveal-left">
-              <div className="exp-card-header">
-                <div className="exp-icon">
-                  <IoBriefcaseOutline />
-                </div>
-                <a
-                  href={exp.mapUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="exp-location-tag exp-location-link"
-                  title={`${exp.company} - Buka lokasi di Google Maps`}
+        <ScrollReveal
+          as="div"
+          className="experience-list"
+          variant="cascade"
+          ref={experienceListRef}
+        >
+          <div className="experience-timeline-track" aria-hidden="true">
+            <m.div
+              className="experience-timeline-fill"
+              style={{ scaleY: shouldReduceMotion ? 1 : timelineScale }}
+            />
+          </div>
+          <ScrollReveal as="article" className="experience-row" variant="card" staggerChild>
+            <aside className="experience-meta">
+              <time dateTime="2019-07">{t('exp_rsml_date')}</time>
+              {renderLocation(t('exp_rsml_location'), rsmlMapUrl, t('exp_rsml_company'))}
+            </aside>
+
+            <div className="experience-detail">
+              <div className="experience-heading">
+                <h3>{t('exp_rsml_title')}</h3>
+                <span className="experience-heading-separator" aria-hidden="true">•</span>
+                <p className="experience-company">{t('exp_rsml_company')}</p>
+              </div>
+              <ul className="experience-impact">
+                <li>{t('exp_rsml_desc')}</li>
+              </ul>
+              {renderTags(rsmlTags)}
+
+              <div className={`experience-network ${isNetworkOpen ? 'is-open' : ''}`}>
+                <button
+                  type="button"
+                  className="experience-network-trigger"
+                  aria-expanded={isNetworkOpen}
+                  aria-controls="lamongan-network-list"
+                  onClick={() => setIsNetworkOpen((open) => !open)}
                 >
-                  <IoLocationOutline className="location-pin-icon" />
-                  <span>{exp.location}</span>
-                  <IoOpenOutline className="exp-external-icon" />
-                </a>
-              </div>
-
-              <div className="exp-content">
-                <h3 className="h4 exp-title">{exp.title}</h3>
-                <div className="exp-meta">
-                  <span className="exp-company">{exp.company}</span>
-                  <span className="exp-separator">•</span>
-                  <time className="exp-date" dateTime={exp.datetime}>
-                    <IoCalendarClearOutline className="exp-meta-icon" />
-                    {exp.date}
-                  </time>
+                  <span className="experience-network-label">{t('exp_network_title')}</span>
+                  <span className="experience-network-actions">
+                    <span className="experience-network-count">{t('exp_network_count')}</span>
+                    <span className="experience-network-chevron" aria-hidden="true" />
+                  </span>
+                </button>
+                <div
+                  className="experience-network-content"
+                  id="lamongan-network-list"
+                  aria-hidden={!isNetworkOpen}
+                  inert={!isNetworkOpen}
+                >
+                  <div className="experience-network-content-inner">
+                    <p className="experience-network-intro">{t('exp_network_subtitle')}</p>
+                    <ul className="experience-network-list">
+                      {lamonganNetwork.map((unit, index) => (
+                        <li
+                          className="experience-network-item"
+                          key={unit.company}
+                          style={{ '--network-item-index': index }}
+                        >
+                          <div className="experience-network-meta">
+                            <time>{unit.date}</time>
+                            <span className="experience-network-meta-separator" aria-hidden="true">•</span>
+                            <span>{unit.roleType}</span>
+                          </div>
+                          <div className="experience-network-detail">
+                            <a href={unit.mapUrl} target="_blank" rel="noopener noreferrer">
+                              {unit.company}
+                              <IoOpenOutline aria-hidden="true" />
+                            </a>
+                            <div className="experience-network-heading">
+                              <h4>{unit.title}</h4>
+                              <span>{unit.roleType}</span>
+                            </div>
+                            <ul className="experience-impact">
+                              <li>{unit.description}</li>
+                            </ul>
+                            {renderTags(unit.tags)}
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-                <p className="exp-description">{exp.description}</p>
-              </div>
-
-              <div className="exp-tech-tags">
-                {exp.tags.map((tag, tagIdx) => (
-                  <span key={tagIdx} className="exp-tag-pill">{tag}</span>
-                ))}
               </div>
             </div>
+          </ScrollReveal>
+
+          {standardExperiences.map((experience) => (
+            <ScrollReveal
+              as="article"
+              className="experience-row"
+              variant="card"
+              staggerChild
+              key={experience.company}
+            >
+              <aside className="experience-meta">
+                <time dateTime={experience.datetime}>{experience.date}</time>
+                {renderLocation(experience.location, experience.mapUrl, experience.company)}
+              </aside>
+
+              <div className="experience-detail">
+                <div className="experience-heading">
+                  <h3>{experience.title}</h3>
+                  <span className="experience-heading-separator" aria-hidden="true">•</span>
+                  <p className="experience-company">{experience.company}</p>
+                </div>
+                <ul className="experience-impact">
+                  <li>{experience.description}</li>
+                </ul>
+                {renderTags(experience.tags)}
+              </div>
+            </ScrollReveal>
           ))}
-        </div>
-
-        {/* Primary Role & Regional Lamongan Healthcare Network */}
-        <div className="experience-card exp-featured-hub reveal-scale">
-          {/* Main RSML Top Bar */}
-          <div className="exp-hub-header">
-            <div className="exp-hub-badges">
-              <div className="exp-status-indicator">
-                <span className="status-pulse-dot"></span>
-                <span className="status-text">{t('exp_rsml_badge')}</span>
-              </div>
-              <a
-                href={rsmlMapUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="exp-badge-location exp-location-link"
-                title={`${t('exp_rsml_company')} - Buka lokasi di Google Maps`}
-              >
-                <IoLocationOutline className="location-pin-icon" />
-                <span>{t('exp_rsml_location')}</span>
-                <IoOpenOutline className="exp-external-icon" />
-              </a>
-            </div>
-            <time className="exp-hub-date">
-              <IoCalendarClearOutline className="exp-meta-icon" />
-              {t('exp_rsml_date')}
-            </time>
-          </div>
-
-          {/* Main RSML Core Role Info */}
-          <div className="exp-hub-main">
-            <div className="exp-hub-icon">
-              <IoServerOutline />
-            </div>
-            <div className="exp-hub-info">
-              <div className="exp-hub-title-row">
-                <h3 className="h3 exp-hub-title">{t('exp_rsml_title')}</h3>
-                <span className="exp-hub-core-pill">Core Hospital</span>
-              </div>
-              <h4 className="h4 exp-hub-company">{t('exp_rsml_company')}</h4>
-              <p className="exp-description exp-hub-desc">{t('exp_rsml_desc')}</p>
-
-              <div className="exp-tech-tags exp-hub-tags">
-                {rsmlTags.map((tag, idx) => (
-                  <span key={idx} className="exp-tag-pill exp-tag-highlight">{tag}</span>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Network Support in Lamongan Region */}
-          <div className="exp-network-section">
-            <div className="exp-network-header">
-              <div className="exp-network-title-wrapper">
-                <div className="exp-network-badge-icon">
-                  <IoGitNetworkOutline />
-                </div>
-                <div>
-                  <h4 className="exp-network-title">{t('exp_network_title')}</h4>
-                  <p className="exp-network-subtitle">{t('exp_network_subtitle')}</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="exp-network-grid">
-              {lamonganNetwork.map((unit, idx) => (
-                <div key={idx} className="exp-network-card">
-                  <div className="exp-network-card-header">
-                    <span className="exp-network-role-pill">{unit.roleType}</span>
-                    <span className="exp-network-card-date">
-                      <IoCalendarClearOutline className="exp-meta-icon" />
-                      {unit.date}
-                    </span>
-                  </div>
-
-                  <a
-                    href={unit.mapUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="exp-network-card-company-wrap exp-company-map-link"
-                    title={`${unit.company} - Buka lokasi di Google Maps`}
-                  >
-                    <IoLocationOutline className="exp-network-company-icon" />
-                    <h5 className="exp-network-card-company">{unit.company}</h5>
-                    <IoOpenOutline className="exp-external-icon" />
-                  </a>
-
-                  <h6 className="exp-network-card-title">{unit.title}</h6>
-                  <p className="exp-network-card-desc">{unit.description}</p>
-
-                  <div className="exp-subcard-tags">
-                    {unit.tags.map((tag, tIdx) => (
-                      <span key={tIdx} className="exp-subtag">{tag}</span>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

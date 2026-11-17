@@ -4,12 +4,13 @@ import { useLanguage } from '../context/LanguageContext';
 
 const Header = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
-  const [isDarkTheme, setIsDarkTheme] = useState(true);
+  const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'dark');
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const audioRef = useRef(null);
   
   const { lang, changeLang, t } = useLanguage();
+  const isDarkTheme = theme === 'dark';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,6 +21,7 @@ const Header = () => {
   }, []);
 
   useEffect(() => {
+    document.documentElement.classList.toggle('dark', isDarkTheme);
     if (isDarkTheme) {
       document.body.classList.add('dark_theme');
       document.body.classList.remove('light_theme');
@@ -30,7 +32,12 @@ const Header = () => {
   }, [isDarkTheme]);
 
   const toggleNav = () => setIsNavOpen(!isNavOpen);
-  const toggleTheme = () => setIsDarkTheme(!isDarkTheme);
+  const toggleTheme = () => {
+    const newTheme = isDarkTheme ? 'light' : 'dark';
+    localStorage.setItem('theme', newTheme);
+    document.documentElement.classList.toggle('dark', newTheme === 'dark');
+    setTheme(newTheme);
+  };
   const toggleMusic = () => {
     if (audioRef.current) {
       if (isMusicPlaying) {
@@ -61,16 +68,15 @@ const Header = () => {
         </h1>
 
         <div className="navbar-actions">
-          <select 
-            name="language" 
-            id="lang" 
-            className="lang-select" 
-            value={lang} 
-            onChange={(e) => changeLang(e.target.value)}
+          <button
+            type="button"
+            className="language-toggle"
+            aria-label={`Switch language to ${lang === 'en' ? 'Indonesian' : 'English'}`}
+            title={`Switch language to ${lang === 'en' ? 'Indonesian' : 'English'}`}
+            onClick={() => changeLang(lang === 'en' ? 'id' : 'en')}
           >
-            <option value="en">En</option>
-            <option value="id">Id</option>
-          </select>
+            {lang === 'en' ? 'EN' : 'ID'}
+          </button>
 
           <button
             className={`music-btn ${isMusicPlaying ? 'playing' : ''}`}

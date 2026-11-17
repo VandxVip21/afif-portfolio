@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import ScrollReveal from './ScrollReveal';
 import { IoLocationOutline, IoCallOutline, IoMailOutline, IoLogoGithub, IoLogoLinkedin, IoPersonCircle, IoMail, IoCall, IoChatbubbles } from 'react-icons/io5';
 import { useLanguage } from '../context/LanguageContext';
 import { db } from '../firebase';
@@ -38,7 +39,7 @@ const Contact = () => {
 
   return (
     <section className="contact" id="contact">
-      <div className="contact-content section-content reveal-left">
+      <ScrollReveal className="contact-content section-content" variant="left">
 
         <p className="section-subtitle">{t('contact_subtitle')}</p>
 
@@ -98,9 +99,9 @@ const Contact = () => {
             </ul>
           </li>
         </ul>
-      </div>
+      </ScrollReveal>
 
-      <form onSubmit={handleSubmit} className="contact-form reveal-right">
+      <ScrollReveal as="form" onSubmit={handleSubmit} className="contact-form" variant="right">
         <div className="form-wrapper">
 
           <label htmlFor="name" className="form-label">{t('contact_form_name')}</label>
@@ -203,7 +204,7 @@ const Contact = () => {
           </div>
         )}
         {status === 'error' && <p style={{ color: 'red', marginTop: '1rem' }}>Error sending message. Please try again.</p>}
-      </form>
+      </ScrollReveal>
     </section>
   );
 };

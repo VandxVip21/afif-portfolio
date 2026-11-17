@@ -16,6 +16,8 @@ const useScrollReveal = () => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               entry.target.classList.add('reveal-active');
+            } else {
+              entry.target.classList.remove('reveal-active');
             }
           });
         },

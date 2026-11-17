@@ -1,7 +1,31 @@
 import { useState } from 'react';
+import ScrollReveal from './ScrollReveal';
 import { useLanguage } from '../context/LanguageContext';
 import {
+  SiBootstrap,
+  SiClickup,
+  SiCss,
+  SiDocker,
+  SiFigma,
+  SiFirebase,
+  SiGit,
+  SiGithub,
+  SiHtml5,
+  SiJavascript,
+  SiLaravel,
+  SiMysql,
+  SiNodedotjs,
+  SiNpm,
+  SiPhp,
+  SiPostman,
   SiPostgresql,
+  SiPython,
+  SiReact,
+  SiSass,
+  SiTrello,
+  SiTypescript,
+  SiVuedotjs,
+  SiWebpack,
   SiMikrotik,
   SiCisco,
   SiProxmox,
@@ -14,6 +38,7 @@ import {
   SiParrotsecurity,
   SiPaloaltonetworks
 } from 'react-icons/si';
+import { VscVscode } from 'react-icons/vsc';
 import {
   FaHospital,
   FaNetworkWired,
@@ -22,7 +47,9 @@ import {
   FaServer
 } from 'react-icons/fa6';
 import {
-  IoScanOutline
+  IoScanOutline,
+  IoChatbubblesOutline,
+  IoTerminalOutline
 } from 'react-icons/io5';
 
 const Skills = () => {
@@ -31,23 +58,23 @@ const Skills = () => {
 
   const skillsData = [
     // Web & Development
-    { name: 'HTML5', icon: 'html5.png' },
-    { name: 'CSS3', icon: 'css3.png' },
-    { name: 'JavaScript', icon: 'javascript.png' },
-    { name: 'TypeScript', icon: 'typescript.png' },
-    { name: 'React', icon: 'react.png' },
-    { name: 'Vue', icon: 'vue.png' },
-    { name: 'Node.js', icon: 'nodejs.png' },
-    { name: 'PHP', icon: 'php.png' },
-    { name: 'Laravel', icon: 'laravel.png' },
-    { name: 'Python', icon: 'python.png' },
+    { name: 'HTML5', IconComponent: SiHtml5, color: '#e34f26' },
+    { name: 'CSS3', IconComponent: SiCss, color: '#1572b6' },
+    { name: 'JavaScript', IconComponent: SiJavascript, color: '#f7df1e' },
+    { name: 'TypeScript', IconComponent: SiTypescript, color: '#3178c6' },
+    { name: 'React', IconComponent: SiReact, color: '#61dafb' },
+    { name: 'Vue', IconComponent: SiVuedotjs, color: '#4fc08d' },
+    { name: 'Node.js', IconComponent: SiNodedotjs, color: '#5fa04e' },
+    { name: 'PHP', IconComponent: SiPhp, color: '#777bb4' },
+    { name: 'Laravel', IconComponent: SiLaravel, color: '#ff2d20' },
+    { name: 'Python', IconComponent: SiPython, color: '#3776ab' },
     { name: 'Flutter', icon: 'flutter-icon.svg' },
-    { name: 'Bootstrap', icon: 'bootstrap.png' },
-    { name: 'Sass', icon: 'sass.png' },
+    { name: 'Bootstrap', IconComponent: SiBootstrap, color: '#7952b3' },
+    { name: 'Sass', IconComponent: SiSass, color: '#cc6699' },
     // Database & Healthcare IT Systems
-    { name: 'MySQL', icon: 'mysql.png' },
+    { name: 'MySQL', IconComponent: SiMysql, color: '#4479a1' },
     { name: 'PostgreSQL', IconComponent: SiPostgresql, color: '#336791' },
-    { name: 'Firebase', icon: 'firebase.png' },
+    { name: 'Firebase', IconComponent: SiFirebase, color: '#ffca28' },
     { name: 'SIMRS Khanza', IconComponent: FaHospital, color: '#0284c7' },
     { name: 'PACS / DICOM', IconComponent: FaNetworkWired, color: '#6366f1' },
     { name: 'Server & NOC', IconComponent: FaServer, color: '#3b82f6' },
@@ -57,16 +84,16 @@ const Skills = () => {
 
   const toolsData = [
     // Dev Tools
-    { name: 'Git', icon: 'git.png' },
-    { name: 'GitHub', icon: 'github.png' },
-    { name: 'VS Code', icon: 'vs-code.png' },
-    { name: 'Postman', icon: 'postman.png' },
-    { name: 'Figma', icon: 'figma.png' },
-    { name: 'Command Line', icon: 'command.png' },
-    { name: 'NPM', icon: 'npm.png' },
-    { name: 'Webpack', icon: 'webpack.png' },
+    { name: 'Git', IconComponent: SiGit, color: '#f05032' },
+    { name: 'GitHub', IconComponent: SiGithub, color: 'var(--text-primary)' },
+    { name: 'VS Code', IconComponent: VscVscode, color: '#007acc' },
+    { name: 'Postman', IconComponent: SiPostman, color: '#ff6c37' },
+    { name: 'Figma', IconComponent: SiFigma, color: '#f24e1e' },
+    { name: 'Command Line', IconComponent: IoTerminalOutline, color: 'var(--text-primary)' },
+    { name: 'NPM', IconComponent: SiNpm, color: '#cb3837' },
+    { name: 'Webpack', IconComponent: SiWebpack, color: '#8dd6f9' },
     // Infrastructure & Virtualization
-    { name: 'Docker', icon: 'docker.png' },
+    { name: 'Docker', IconComponent: SiDocker, color: '#2496ed' },
     { name: 'Proxmox VE', IconComponent: SiProxmox, color: '#e57000' },
     { name: 'MikroTik RouterOS', IconComponent: SiMikrotik, color: '#ee2f25' },
     { name: 'Cisco Networking', IconComponent: SiCisco, color: '#1ba0d7' },
@@ -74,9 +101,9 @@ const Skills = () => {
     // Monitoring & Management
     { name: 'Prometheus', IconComponent: SiPrometheus, color: '#e6522c' },
     { name: 'Grafana', IconComponent: SiGrafana, color: '#f46800' },
-    { name: 'ClickUp', icon: 'clickup.png' },
-    { name: 'Trello', icon: 'trello.png' },
-    { name: 'Slack', icon: 'slack.png' },
+    { name: 'ClickUp', IconComponent: SiClickup, color: '#7b68ee' },
+    { name: 'Trello', IconComponent: SiTrello, color: '#0052cc' },
+    { name: 'Slack', IconComponent: IoChatbubblesOutline, color: '#611f69' },
   ];
 
   const securityData = [
@@ -105,20 +132,38 @@ const Skills = () => {
       const Icon = item.IconComponent;
       return (
         <div className="card-icon-svg" style={{ color: item.color || 'var(--accent-color)' }}>
-          <Icon />
+          <Icon aria-hidden="true" />
         </div>
       );
     }
-    return (
-      <div className="card-icon">
-        <img src={`./assets/images/${item.icon}`} alt={`${item.name} logo`} />
-      </div>
-    );
+    if (item.icon?.endsWith('.svg')) {
+      return (
+        <div className="card-icon">
+          <img src={`./assets/images/${item.icon}`} alt="" aria-hidden="true" />
+        </div>
+      );
+    }
+
+    return null;
   };
+
+  const renderSkillList = (items, className) => (
+    <ScrollReveal as="ul" className={className} variant="cascade">
+      {items.map((item) => (
+        <ScrollReveal as="li" variant="card" staggerChild key={item.name}>
+          <div className="skill-card">
+            <div className="tooltip">{item.name}</div>
+            {renderIcon(item)}
+            <span className="skill-name">{item.name}</span>
+          </div>
+        </ScrollReveal>
+      ))}
+    </ScrollReveal>
+  );
 
   return (
     <section className="skills" id="skills">
-      <div className="skills-content section-content reveal">
+      <ScrollReveal className="skills-content section-content">
         <p className="section-subtitle">{t('skills_subtitle')}</p>
 
         <h2 className="h3 section-title">
@@ -151,50 +196,12 @@ const Skills = () => {
             {t('skills_tab_security')}
           </button>
         </div>
-      </div>
+      </ScrollReveal>
 
       <div className="skills-box">
-        {activeTab === 'skills' && (
-          <ul className="skills-list reveal-scale">
-            {skillsData.map((skill, index) => (
-              <li key={index}>
-                <div className="skill-card">
-                  <div className="tooltip">{skill.name}</div>
-                  {renderIcon(skill)}
-                  <span className="skill-name">{skill.name}</span>
-                </div>
-              </li>
-            ))}
-          </ul>
-        )}
-
-        {activeTab === 'tools' && (
-          <ul className="tools-list reveal-scale">
-            {toolsData.map((tool, index) => (
-              <li key={index}>
-                <div className="skill-card">
-                  <div className="tooltip">{tool.name}</div>
-                  {renderIcon(tool)}
-                  <span className="skill-name">{tool.name}</span>
-                </div>
-              </li>
-            ))}
-          </ul>
-        )}
-
-        {activeTab === 'security' && (
-          <ul className="tools-list reveal-scale">
-            {securityData.map((sec, index) => (
-              <li key={index}>
-                <div className="skill-card">
-                  <div className="tooltip">{sec.name}</div>
-                  {renderIcon(sec)}
-                  <span className="skill-name">{sec.name}</span>
-                </div>
-              </li>
-            ))}
-          </ul>
-        )}
+        {activeTab === 'skills' && renderSkillList(skillsData, 'skills-list')}
+        {activeTab === 'tools' && renderSkillList(toolsData, 'tools-list')}
+        {activeTab === 'security' && renderSkillList(securityData, 'tools-list')}
       </div>
     </section>
   );

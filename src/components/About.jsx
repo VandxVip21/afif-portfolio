@@ -1,12 +1,13 @@
 import { IoRibbonOutline } from 'react-icons/io5';
 import { useLanguage } from '../context/LanguageContext';
+import ScrollReveal from './ScrollReveal';
 
 const About = () => {
   const { t } = useLanguage();
 
   return (
     <section className="about" id="about">
-      <figure className="about-banner reveal-left">
+      <ScrollReveal as="figure" className="about-banner" variant="left">
         <img
           src="./assets/images/Afif.jpeg"
           alt="Muhammad Afif Abiyyu"
@@ -19,9 +20,9 @@ const About = () => {
             <span>{t('stat_years')}</span>
           </div>
         </div>
-      </figure>
+      </ScrollReveal>
 
-      <div className="about-content section-content reveal-right">
+      <ScrollReveal className="about-content section-content" variant="right">
         <p className="section-subtitle">{t('about_subtitle')}</p>
 
         <h2 className="h3 section-title">
@@ -37,7 +38,7 @@ const About = () => {
 
           <a href="./assets/file/CV Muhammad Afif Abiyyu 2026.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-primary">{t('about_btn_cv')}</a>
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 };

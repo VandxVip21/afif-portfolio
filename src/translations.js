@@ -64,6 +64,7 @@ export const translations = {
 
     exp_network_title: "Internal Support & Healthcare Network Units (Lamongan Region)",
     exp_network_subtitle: "Sub-branch hospitals and clinics supported under the Lamongan healthcare network",
+    exp_network_count: "4 supported facilities",
 
     exp_sub_kalikapas_company: "RS Muhammadiyah Kalikapas",
     exp_sub_kalikapas_title: "IT Support Assistant",
@@ -108,7 +109,6 @@ export const translations = {
     proj_7_tag: "Website",
     proj_8_title: "CV. Elite Agrotrade Website",
     proj_8_tag: "B2B Export Website",
-
     // Education
     edu_subtitle: "Education & Certifications",
     edu_title: "My Academic Background & IT Certifications",
@@ -201,6 +201,7 @@ export const translations = {
 
     exp_network_title: "Dukungan Internal & Fasilitas Kesehatan Jejaring (Wilayah Lamongan)",
     exp_network_subtitle: "Fasilitas rumah sakit cabang & klinik yang didukung dalam satu ekosistem wilayah Lamongan",
+    exp_network_count: "4 fasilitas didukung",
 
     exp_sub_kalikapas_company: "RS Muhammadiyah Kalikapas",
     exp_sub_kalikapas_title: "Asisten IT Support",
@@ -245,7 +246,6 @@ export const translations = {
     proj_7_tag: "Website",
     proj_8_title: "Website CV. Elite Agrotrade",
     proj_8_tag: "Website Ekspor",
-
     // Education
     edu_subtitle: "Pendidikan & Sertifikasi",
     edu_title: "Latar Belakang Akademik & Sertifikasi TI Saya",
