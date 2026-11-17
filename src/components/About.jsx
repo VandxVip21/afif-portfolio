@@ -36,7 +36,7 @@ const About = () => {
         <div className="btn-group">
           <button className="btn btn-secondary">{t('about_btn_hire')}</button>
 
-          <a href="./assets/file/CV Muhammad Afif Abiyyu 2026.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-primary">{t('about_btn_cv')}</a>
+          <a href="./assets/file/CV - Muhammad Afif Abiyyu.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-primary">{t('about_btn_cv')}</a>
         </div>
       </ScrollReveal>
     </section>
