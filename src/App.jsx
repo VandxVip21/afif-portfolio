@@ -12,6 +12,7 @@ import Education from './components/Education';
 import Contact from './components/Contact';
 import Services from './components/Services';
 import Inbox from './components/Inbox';
+import Loader from './components/Loader';
 import ScrollProgress from './components/ScrollProgress';
 import { LanguageProvider } from './context/LanguageContext';
 import useScrollReveal from './hooks/useScrollReveal';
@@ -36,6 +37,7 @@ function AppContent() {
 
   return (
     <LazyMotion features={domAnimation}>
+      <Loader />
       <ScrollProgress />
       <Header />
       <main>

@@ -5,6 +5,7 @@ const ScrollReveal = ({
   as = 'div',
   variant = 'heading',
   staggerChild = false,
+  viewportAmount = 0.15,
   children,
   ...props
 }) => {
@@ -18,7 +19,7 @@ const ScrollReveal = ({
         initial: shouldReduceMotion ? false : 'hidden',
         animate: shouldReduceMotion ? 'visible' : undefined,
         whileInView: shouldReduceMotion ? undefined : 'visible',
-        viewport: { once: false, amount: 0.15 }
+        viewport: { once: false, amount: viewportAmount }
       };
 
   return (

@@ -133,7 +133,12 @@ const Projects = () => {
           <h2 className="h3 section-title">{t('proj_title')}</h2>
         </ScrollReveal>
 
-        <ScrollReveal as="ul" className="project-grid" variant="cascade">
+        <ScrollReveal
+          as="ul"
+          className="project-grid"
+          variant="cascade"
+          viewportAmount={0.01}
+        >
           {projects.map((project) => (
             <m.li
               className="project-item"
