@@ -6,7 +6,7 @@ import { db } from '../firebase';
 import { ref, push, serverTimestamp } from 'firebase/database';
 
 const Contact = () => {
-  const { t } = useLanguage();
+  const { lang, t } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -58,7 +58,7 @@ const Contact = () => {
             </div>
             <div className="wrapper">
               <h3 className="h4 contact-item-title">{t('contact_address')}</h3>
-              <address className="contact-info">Jakarta Selatan</address>
+              <address className="contact-info">{lang === 'id' ? 'Jawa Barat & Jakarta' : 'West Java & Jakarta'}</address>
             </div>
           </li>
 
@@ -68,7 +68,7 @@ const Contact = () => {
             </div>
             <div className="wrapper">
               <h3 className="h4 contact-item-title">{t('contact_phone')}</h3>
-              <a href="tel:+628778584341" className="contact-info">+62-877-8584-341</a>
+              <a href="https://wa.me/6287714001013" className="contact-info" target="_blank" rel="noopener noreferrer">WhatsApp 0877-1400-1013</a>
             </div>
           </li>
 
@@ -111,7 +111,7 @@ const Contact = () => {
               name="name"
               id="name"
               required
-              placeholder="e.g John Doe"
+              placeholder={lang === 'id' ? 'Nama Anda' : 'Your name'}
               className="input-field"
               value={formData.name}
               onChange={handleChange}
@@ -128,7 +128,7 @@ const Contact = () => {
               name="email"
               id="email"
               required
-              placeholder="e.g johndoe@mail.com"
+              placeholder="name@email.com"
               className="input-field"
               value={formData.email}
               onChange={handleChange}
@@ -145,7 +145,7 @@ const Contact = () => {
               name="phone"
               id="phone"
               required
-              placeholder="Phone Number"
+              placeholder={lang === 'id' ? 'Nomor telepon' : 'Phone number'}
               className="input-field"
               value={formData.phone}
               onChange={handleChange}
@@ -171,7 +171,7 @@ const Contact = () => {
         </div>
 
         <button type="submit" className="btn btn-primary" disabled={status === 'loading'}>
-          {status === 'loading' ? 'Sending...' : t('contact_form_send')}
+          {status === 'loading' ? (lang === 'id' ? 'Mengirim...' : 'Sending...') : t('contact_form_send')}
         </button>
         {status === 'success' && (
           <div style={{
@@ -203,7 +203,7 @@ const Contact = () => {
             </div>
           </div>
         )}
-        {status === 'error' && <p style={{ color: 'red', marginTop: '1rem' }}>Error sending message. Please try again.</p>}
+        {status === 'error' && <p style={{ color: 'red', marginTop: '1rem' }}>Pesan gagal dikirim. Silakan coba lagi.</p>}
       </ScrollReveal>
     </section>
   );

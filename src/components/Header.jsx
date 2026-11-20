@@ -59,7 +59,7 @@ const Header = () => {
         ref={audioRef}
         src="./assets/file/sounddelicious-portfolio-harmony-221983.mp3"
         loop
-        preload="auto"
+        preload="none"
         onEnded={() => setIsMusicPlaying(false)}
       />
       <div className="container">
@@ -71,17 +71,16 @@ const Header = () => {
           <button
             type="button"
             className="language-toggle"
-            aria-label={`Switch language to ${lang === 'en' ? 'Indonesian' : 'English'}`}
-            title={`Switch language to ${lang === 'en' ? 'Indonesian' : 'English'}`}
-            onClick={() => changeLang(lang === 'en' ? 'id' : 'en')}
+            aria-label={lang === 'id' ? 'Switch language to English' : 'Ganti bahasa ke Indonesia'}
+            title={lang === 'id' ? 'English' : 'Bahasa Indonesia'}
+            onClick={() => changeLang(lang === 'id' ? 'en' : 'id')}
           >
-            {lang === 'en' ? 'EN' : 'ID'}
+            {lang === 'id' ? 'EN' : 'ID'}
           </button>
-
           <button
             className={`music-btn ${isMusicPlaying ? 'playing' : ''}`}
-            aria-label="Toggle Music"
-            title={isMusicPlaying ? "Mute Background Music" : "Play Background Music"}
+            aria-label="Atur musik latar"
+            title={isMusicPlaying ? 'Matikan musik latar' : 'Putar musik latar'}
             onClick={toggleMusic}
           >
             {isMusicPlaying ? <IoVolumeHighOutline className="icon" /> : <IoVolumeMuteOutline className="icon" />}
@@ -89,8 +88,8 @@ const Header = () => {
 
           <button
             className="theme-btn"
-            aria-label="Change Theme"
-            title="Change Theme"
+            aria-label="Ganti tema"
+            title="Ganti tema"
             onClick={toggleTheme}
           >
             {isDarkTheme ? <IoSunnyOutline className="icon" /> : <IoMoonOutline className="icon" />}
@@ -99,7 +98,7 @@ const Header = () => {
 
         <button
           className={`nav-toggle-btn ${isNavOpen ? 'active' : ''}`}
-          aria-label="Toggle Menu"
+          aria-label="Buka atau tutup menu"
           onClick={toggleNav}
         >
           <span className="one"></span>
@@ -114,6 +113,7 @@ const Header = () => {
             <li><a href="#skills" className="navbar-link" onClick={() => setIsNavOpen(false)}>{t('nav_skills')}</a></li>
             <li><a href="#experience" className="navbar-link" onClick={() => setIsNavOpen(false)}>{t('nav_experience')}</a></li>
             <li><a href="#projects" className="navbar-link" onClick={() => setIsNavOpen(false)}>{t('nav_projects')}</a></li>
+            <li><a href="#services" className="navbar-link" onClick={() => setIsNavOpen(false)}>{t('nav_services')}</a></li>
             <li><a href="#contact" className="navbar-link" onClick={() => setIsNavOpen(false)}>{t('nav_contact')}</a></li>
           </ul>
         </nav>

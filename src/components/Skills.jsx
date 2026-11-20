@@ -139,7 +139,7 @@ const Skills = () => {
     if (item.icon?.endsWith('.svg')) {
       return (
         <div className="card-icon">
-          <img src={`./assets/images/${item.icon}`} alt="" aria-hidden="true" />
+          <img src={`./assets/images/${item.icon}`} alt="" aria-hidden="true" loading="lazy" decoding="async" />
         </div>
       );
     }

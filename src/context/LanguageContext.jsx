@@ -1,22 +1,22 @@
-import { createContext, useState, useContext, useEffect } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import { translations } from '../translations';
 
 const LanguageContext = createContext();
 
 export const LanguageProvider = ({ children }) => {
-  const [lang, setLang] = useState('en'); // default language
+  const [lang, setLang] = useState(() => {
+    const savedLang = localStorage.getItem('appLang');
+    return savedLang === 'en' || savedLang === 'id' ? savedLang : 'id';
+  });
 
   useEffect(() => {
-    // Optionally retrieve language from local storage on mount
-    const savedLang = localStorage.getItem('appLang');
-    if (savedLang) {
-      setLang(savedLang);
-    }
-  }, []);
+    document.documentElement.lang = lang;
+  }, [lang]);
 
   const changeLang = (newLang) => {
-    setLang(newLang);
+    if (newLang !== 'en' && newLang !== 'id') return;
     localStorage.setItem('appLang', newLang);
+    setLang(newLang);
   };
 
   const t = (key) => {

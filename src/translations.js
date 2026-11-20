@@ -6,12 +6,15 @@ export const translations = {
     nav_skills: "Skills.",
     nav_experience: "Experience.",
     nav_projects: "Projects.",
+    nav_services: "Services.",
     nav_contact: "Contact.",
 
     // Hero
-    hero_title: "IT Infrastructure & System Administrator",
-    hero_subtitle: "AI Automation & Cyber Security | Healthcare IT Systems (HIS, EHR, SIMRS, PACS, HRIS) | Network & Data Security",
+    hero_eyebrow: "SIMRS & Hospital IT Infrastructure",
+    hero_title: "Helping hospitals and clinics run stable SIMRS and IT infrastructure.",
+    hero_subtitle: "5+ years of experience with SIMRS Khanza, BPJS integration, networking, and web development. Former Head of SIRS at RS Umum dr Euis.",
     hero_btn: "Get in touch",
+    hero_email: "Email me",
     hero_scroll: "Scroll",
 
     // Stats
@@ -21,8 +24,8 @@ export const translations = {
 
     // About
     about_subtitle: "About me",
-    about_title: "Need a Creative Product? I can Help You!",
-    about_text: "Hi! I’m Muhammad Afif Abiyyu, an Experienced IT Support Specialist with 8 years of hands-on experience supporting hospital IT systems. I am proficient in maintaining and troubleshooting critical health information systems, including EHR, HIS, and PACS. I have a proven ability to provide timely support, ensure network uptime, and uphold data security in healthcare environments. Highly detail-oriented, analytical, and responsive to high-stakes technical challenges.",
+    about_title: "Supporting healthcare IT operations",
+    about_text: "I’m Muhammad Afif Abiyyu, an IT professional with 5+ years of experience supporting SIMRS, BPJS integration, networking, servers, and web development in hospitals and clinics. I focus on stable systems, clear workflows, and practical support for staff.",
     about_btn_hire: "Hire me",
     about_btn_cv: "Download cv",
 
@@ -92,7 +95,7 @@ export const translations = {
 
     // Projects
     proj_subtitle: "My Projects",
-    proj_title: "Recent Works",
+    proj_title: "Selected Projects",
     proj_1_title: "RSM Lamongan Website",
     proj_1_tag: "Website",
     proj_2_title: "Marketplace UMKM",
@@ -116,6 +119,7 @@ export const translations = {
     edu_cert_title: "Certifications & Training",
     edu_1_school: "ITB Ahmad Dahlan",
     edu_1_degree: "Sistem Informasi",
+    edu_1_date: "2021 - Present",
     edu_2_school: "SMK Muhammadiyah 5 Babat",
     edu_2_degree: "Teknik Komputer Jaringan",
     cert_1: "IT Certification",
@@ -124,9 +128,9 @@ export const translations = {
 
     // Contact
     contact_subtitle: "Contact",
-    contact_title: "Have You Any Project? Please Drop a Message",
-    contact_text: "Get in touch and let me know how i can help. Fill out the form and i’ll be in touch as soon as possible.",
-    contact_address: "Address:",
+    contact_title: "Let's discuss your IT needs",
+    contact_text: "For SIMRS consulting, hospital IT support, or website development, contact me via WhatsApp or email.",
+    contact_address: "Service area:",
     contact_phone: "Phone:",
     contact_email: "Email:",
     contact_form_name: "Name",
@@ -134,7 +138,10 @@ export const translations = {
     contact_form_phone: "Phone",
     contact_form_msg: "Message",
     contact_form_msg_ph: "Write message...",
-    contact_form_send: "Send"
+    contact_form_send: "Send",
+    services_subtitle: "Services",
+    services_title: "Technology support for your needs",
+    services_text: "Implementation and maintenance support for hospitals, clinics, and businesses."
   },
   id: {
     // Header
@@ -143,12 +150,15 @@ export const translations = {
     nav_skills: "Keahlian.",
     nav_experience: "Pengalaman.",
     nav_projects: "Proyek.",
+    nav_services: "Layanan.",
     nav_contact: "Kontak.",
 
     // Hero
-    hero_title: "Administrator Infrastruktur & Sistem IT",
-    hero_subtitle: "Otomasi AI & Keamanan Siber | Sistem IT Kesehatan (HIS, EHR, SIMRS, PACS, HRIS) | Keamanan Jaringan & Data",
+    hero_eyebrow: "SIMRS & Infrastruktur IT Rumah Sakit",
+    hero_title: "Membantu rumah sakit dan klinik menjalankan SIMRS dan infrastruktur IT dengan stabil.",
+    hero_subtitle: "5+ tahun pengalaman SIMRS Khanza, integrasi BPJS, jaringan, dan pengembangan web. Mantan Head of SIRS RS Umum dr Euis.",
     hero_btn: "Hubungi Saya",
+    hero_email: "Kirim Email",
     hero_scroll: "Gulir",
 
     // Stats
@@ -158,9 +168,9 @@ export const translations = {
 
     // About
     about_subtitle: "Tentang Saya",
-    about_title: "Butuh Produk Kreatif? Saya Bisa Membantu Anda!",
-    about_text: "Halo! Saya Muhammad Afif Abiyyu, seorang Spesialis Dukungan TI Berpengalaman dengan 8 tahun pengalaman praktis mendukung sistem TI rumah sakit. Saya mahir dalam memelihara dan memecahkan masalah sistem informasi kesehatan penting, termasuk EHR, HIS, dan PACS. Saya memiliki kemampuan yang terbukti untuk memberikan dukungan tepat waktu, memastikan waktu aktif jaringan, dan menjaga keamanan data di lingkungan perawatan kesehatan. Sangat berorientasi pada detail, analitis, dan responsif terhadap tantangan teknis berisiko tinggi.",
-    about_btn_hire: "Rekrut Saya",
+    about_title: "Mendukung operasional IT layanan kesehatan",
+    about_text: "Saya Muhammad Afif Abiyyu, praktisi IT dengan pengalaman lebih dari 5 tahun mendukung SIMRS, integrasi BPJS, jaringan, server, dan pengembangan web di rumah sakit serta klinik. Saya berfokus pada sistem yang stabil, alur kerja yang jelas, dan dukungan yang mudah dipahami staf.",
+    about_btn_hire: "Hubungi Saya",
     about_btn_cv: "Unduh CV",
 
     // Skills
@@ -229,7 +239,7 @@ export const translations = {
 
     // Projects
     proj_subtitle: "Proyek Saya",
-    proj_title: "Karya Terbaru",
+    proj_title: "Proyek",
     proj_1_title: "Sistem RSML",
     proj_1_tag: "Website",
     proj_2_title: "Marketplace UMKM",
@@ -253,6 +263,7 @@ export const translations = {
     edu_cert_title: "Sertifikasi & Pelatihan",
     edu_1_school: "ITB Ahmad Dahlan",
     edu_1_degree: "Sistem Informasi",
+    edu_1_date: "2021 - Sekarang",
     edu_2_school: "SMK Muhammadiyah 5 Babat",
     edu_2_degree: "Teknik Komputer Jaringan",
     cert_1: "Sertifikasi TI",
@@ -261,9 +272,9 @@ export const translations = {
 
     // Contact
     contact_subtitle: "Kontak",
-    contact_title: "Ada Proyek? Silakan Kirim Pesan",
-    contact_text: "Hubungi saya dan beri tahu bagaimana saya bisa membantu. Isi formulir dan saya akan menghubungi Anda secepat mungkin.",
-    contact_address: "Alamat:",
+    contact_title: "Mari bicarakan kebutuhan IT Anda",
+    contact_text: "Untuk konsultasi SIMRS, dukungan IT rumah sakit, atau pembuatan website, hubungi saya melalui WhatsApp atau email.",
+    contact_address: "Area layanan:",
     contact_phone: "Telepon:",
     contact_email: "Email:",
     contact_form_name: "Nama",
@@ -271,6 +282,9 @@ export const translations = {
     contact_form_phone: "Telepon",
     contact_form_msg: "Pesan",
     contact_form_msg_ph: "Tulis pesan...",
-    contact_form_send: "Kirim"
+    contact_form_send: "Kirim",
+    services_subtitle: "Layanan",
+    services_title: "Dukungan teknologi sesuai kebutuhan",
+    services_text: "Pendampingan implementasi dan pemeliharaan untuk rumah sakit, klinik, dan usaha."
   }
 };

@@ -30,7 +30,7 @@ const Education = () => {
                 <div className="timeline-card">
                   <h4 className="timeline-title">{t('edu_1_school')}</h4>
                   <p className="timeline-subtitle">{t('edu_1_degree')}</p>
-                  <span className="timeline-date">2021 - Present</span>
+                  <span className="timeline-date">{t('edu_1_date')}</span>
                 </div>
               </div>
               
@@ -54,12 +54,12 @@ const Education = () => {
                   className="cert-card reveal-scale" 
                   key={index}
                   onClick={() => setSelectedCert(cert)}
-                  title="Click to view certificate"
+                  title="Klik untuk melihat sertifikat"
                 >
                   <div className="cert-banner">
-                    <img src={`./assets/images/${cert.img}`} alt={cert.title} />
+                    <img src={`./assets/images/${cert.img}`} alt={cert.title} loading="lazy" decoding="async" />
                     <div className="cert-overlay">
-                      <span className="cert-view-btn"><IoEyeOutline /> View</span>
+                      <span className="cert-view-btn"><IoEyeOutline /> Lihat</span>
                     </div>
                   </div>
                   <div className="cert-content">

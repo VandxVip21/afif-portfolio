@@ -1,13 +1,156 @@
-import { IoLocationOutline, IoOpenOutline } from 'react-icons/io5';
-import { useRef, useState } from 'react';
+import { IoLocationOutline } from 'react-icons/io5';
+import { useRef } from 'react';
 import { m, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import ScrollReveal from './ScrollReveal';
 
+const experiences = [
+  {
+    title: { id: 'Staf IT', en: 'IT Staff' },
+    company: 'RS Umum Kartini',
+    location: { id: 'Jakarta Selatan', en: 'South Jakarta' },
+    date: { id: 'Jan 2026 - Agu 2026', en: 'Jan 2026 - Aug 2026' },
+    datetime: '2026-01',
+    description: {
+      id: 'Mengelola jaringan dan perangkat kerja rumah sakit serta mengembangkan website resmi untuk informasi layanan.',
+      en: 'Managed the hospital network and workstations, and developed the official website for service information.'
+    },
+    result: {
+      id: 'Website resmi rumah sakit dirancang ulang dan dikelola sebagai sumber informasi layanan, sementara jaringan, perangkat kerja, dan CCTV dijaga tetap beroperasi.',
+      en: "Redesigned and maintained the hospital's official website as a service-information source, while keeping the network, workstations, and CCTV running."
+    },
+    metric: { id: '', en: '' },
+    tags: { id: ['Jaringan', 'Perangkat IT', 'Website Rumah Sakit'], en: ['Networking', 'IT Equipment', 'Hospital Website'] }
+  },
+  {
+    title: { id: 'Kepala SIRS', en: 'Head of Hospital Information Systems' },
+    company: 'RS Umum dr Euis',
+    location: { id: 'Jakarta Timur', en: 'East Jakarta' },
+    date: { id: 'Okt 2025 - Jan 2026', en: 'Oct 2025 - Jan 2026' },
+    datetime: '2025-10',
+    description: {
+      id: 'Memimpin penerapan SIMRS Khanza, integrasi BPJS Kesehatan, sistem antrean farmasi, serta penyusunan SOP dan pelatihan staf.',
+      en: 'Led SIMRS Khanza implementation, BPJS Kesehatan integration, pharmacy queue setup, SOP development, and staff training.'
+    },
+    result: {
+      id: 'Membangun sistem antrean farmasi, mengelola integrasi BPJS Kesehatan (sinkronisasi data, klaim, kepatuhan administrasi), serta menyusun SOP dan melatih pengguna SIMRS Khanza.',
+      en: 'Built a pharmacy queue system, managed BPJS Health integration (data sync, claims, administrative compliance), and wrote SOPs and trained SIMRS Khanza users.'
+    },
+    metric: { id: '', en: '' },
+    tags: { id: ['SIMRS Khanza', 'Integrasi BPJS', 'Antrean Farmasi', 'Pelatihan Staf'], en: ['SIMRS Khanza', 'BPJS Integration', 'Pharmacy Queue', 'Staff Training'] }
+  },
+  {
+    title: { id: 'Wiraswasta & Pekerjaan Mandiri', en: 'Self-Employed & Independent Projects' },
+    company: { id: 'Proyek Lepas', en: 'Independent Projects' },
+    location: { id: 'Indonesia', en: 'Indonesia' },
+    date: { id: 'Agu 2024 - Sep 2025', en: 'Aug 2024 - Sep 2025' },
+    datetime: '2024-08',
+    description: {
+      id: 'Mengerjakan proyek website dan memberikan dukungan teknis secara mandiri untuk kebutuhan usaha dan layanan kesehatan.',
+      en: 'Delivered independent website projects and technical support for businesses and healthcare providers.'
+    },
+    result: { id: '', en: '' },
+    metric: { id: '', en: '' },
+    tags: { id: ['Website', 'Dukungan Teknis', 'Proyek Mandiri'], en: ['Websites', 'Technical Support', 'Independent Projects'] }
+  },
+  {
+    title: { id: 'Manajer TI', en: 'IT Manager' },
+    company: 'PT Dash Garment Indonesia',
+    location: { id: 'Bandung, Jawa Barat', en: 'Bandung, West Java' },
+    date: { id: 'Jun 2023 - Jul 2024', en: 'Jun 2023 - Jul 2024' },
+    datetime: '2023-06',
+    description: {
+      id: 'Mengelola operasional TI, jaringan, pemeliharaan server, dan pengembangan dashboard HRIS.',
+      en: 'Managed IT operations, networking, server maintenance, and HRIS dashboard development.'
+    },
+    result: {
+      id: 'HRIS dikembangkan dan diterapkan untuk rekrutmen, absensi, penggajian, dan evaluasi kinerja, sambil memimpin tim IT yang menjaga jaringan, server, dan keamanan data.',
+      en: 'Developed and rolled out an HRIS covering recruitment, attendance, payroll, and performance evaluation, while leading the IT team responsible for the network, servers, and data security.'
+    },
+    metric: { id: '', en: '' },
+    tags: { id: ['Dashboard HRIS', 'Jaringan', 'Pemeliharaan Server', 'Operasional TI'], en: ['HRIS Dashboard', 'Networking', 'Server Maintenance', 'IT Operations'] }
+  },
+  {
+    title: { id: 'Pelaksana SIRS', en: 'Hospital Information Systems Officer' },
+    company: 'RS Muhammadiyah Lamongan',
+    location: { id: 'Lamongan, Jawa Timur', en: 'Lamongan, East Java' },
+    date: { id: 'Jul 2019 - Mar 2023', en: 'Jul 2019 - Mar 2023' },
+    datetime: '2019-07',
+    description: {
+      id: 'Menangani dukungan SIRS, jaringan, server, pencadangan data, dan sistem informasi rumah sakit.',
+      en: 'Supported hospital information systems, networking, servers, data backups, and hospital operations.'
+    },
+    result: {
+      id: 'Hampir 4 tahun menjaga SIMRS Khanza, EHR, HIS, PACS, dan jaringan tetap berjalan, dengan backup rutin dan dokumentasi prosedur penanganan masalah.',
+      en: 'Nearly four years keeping SIMRS Khanza, EHR, HIS, PACS, and the network running, with routine backups and documented troubleshooting procedures.'
+    },
+    metric: { id: '', en: '' },
+    tags: { id: ['SIMRS', 'Jaringan', 'Server', 'Pencadangan Data'], en: ['SIMRS', 'Networking', 'Servers', 'Data Backups'] },
+    parallelWork: [
+      {
+        company: 'Klinik Muhammadiyah Lamongan',
+        type: { id: 'Dukungan internal', en: 'Internal support' },
+        date: { id: 'Des 2019 - Mar 2023', en: 'Dec 2019 - Mar 2023' },
+        description: {
+          id: 'Mendampingi staf, mengelola akses sistem, menjaga jaringan, dan membantu penerapan perangkat.',
+          en: 'Supported staff, managed system access, maintained the network, and helped deploy devices.'
+        },
+        result: {
+          id: 'Menjadi garda depan dukungan IT bagi staf klinik, dengan dokumentasi masalah berulang beserta solusinya.',
+          en: 'First-line IT support for clinic staff, with recurring issues and their fixes documented.'
+        },
+        metric: { id: '', en: '' }
+      },
+      {
+        company: 'RS Muhammadiyah Kalikapas',
+        type: { id: 'Dukungan internal', en: 'Internal support' },
+        date: { id: 'Agu 2021 - Mar 2023', en: 'Aug 2021 - Mar 2023' },
+        description: {
+          id: 'Menangani kendala perangkat keras dan lunak, dukungan jaringan, serta pemeliharaan CCTV.',
+          en: 'Handled hardware and software issues, network support, and CCTV maintenance.'
+        },
+        result: {
+          id: 'Mendukung tim IT dalam troubleshooting perangkat dan memberi dukungan jaringan serta CCTV secara on-call.',
+          en: 'Supported the IT team with device troubleshooting and provided on-call network and CCTV support.'
+        },
+        metric: { id: '', en: '' }
+      },
+      {
+        company: 'Klinik Surya Medika',
+        type: { id: 'Paruh waktu', en: 'Part-time' },
+        date: { id: 'Jan 2021 - Mar 2023', en: 'Jan 2021 - Mar 2023' },
+        description: {
+          id: 'Membantu pengembangan sistem antrean, menjaga jaringan, dan mendiagnosis perangkat.',
+          en: 'Helped develop a queue system, maintain the network, and diagnose devices.'
+        },
+        result: {
+          id: 'Mengembangkan sistem antrean pasien dan menjaga jaringan LAN serta perangkat klinik tetap stabil.',
+          en: "Developed a patient queue system and kept the clinic's LAN and devices stable."
+        },
+        metric: { id: '', en: '' }
+      },
+      {
+        company: 'RS Permata Bunda',
+        type: { id: 'Lepas', en: 'Freelance' },
+        date: { id: 'Jan 2021 - Mar 2023', en: 'Jan 2021 - Mar 2023' },
+        description: {
+          id: 'Mendukung jaringan, konfigurasi server, CCTV, serta sistem interkom dan telepon.',
+          en: 'Supported networking, server configuration, CCTV, intercom, and telephone systems.'
+        },
+        result: {
+          id: 'Memasang dan memelihara jaringan, server, CCTV, serta sistem telepon PBX dan interkom.',
+          en: 'Installed and maintained the network, servers, CCTV, and PBX/intercom telephone systems.'
+        },
+        metric: { id: '', en: '' }
+      }
+    ]
+  }
+];
+
 const Experience = () => {
-  const { t } = useLanguage();
+  const { lang, t } = useLanguage();
+  const localized = (value) => (typeof value === 'string' ? value : value[lang]);
   const shouldReduceMotion = useReducedMotion();
-  const [isNetworkOpen, setIsNetworkOpen] = useState(false);
   const experienceListRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: experienceListRef,
@@ -15,102 +158,23 @@ const Experience = () => {
   });
   const timelineScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
-  const standardExperiences = [
-    {
-      title: t('exp_2_title'),
-      company: t('exp_2_company'),
-      location: t('exp_2_location'),
-      mapUrl: 'https://www.google.com/search?q=pt+dash+garment+indonesia&oq=PT+dash+garment+indo&gs_lcrp=EgZjaHJvbWUqCggAEAAY4wIYgAQyCggAEAAY4wIYgAQyDQgBEC4YrwEYxwEYgAQyBggCEEUYOTIHCAMQABjvBTIHCAQQABjvBTIHCAUQABjvBTIHCAYQABjvBdIBCDQyMDBqMGo5qAIAsAIA&sourceid=chrome&source=chrome.ob&ie=UTF-8',
-      date: 'Jun 2023 - Jul 2024',
-      datetime: '2023-06',
-      description: t('exp_2_desc'),
-      tags: ['HRIS Dashboard', 'Enterprise Network', 'Server Maintenance', 'IT Operations']
-    },
-    {
-      title: t('exp_1_title'),
-      company: t('exp_1_company'),
-      location: t('exp_1_location'),
-      mapUrl: 'https://www.google.com/search?q=rs+umum+dr+euis&oq=rs+umum+dr+euis+&gs_lcrp=EgZjaHJvbWUyCggAEEUYFhgeGDkyBwgBEAAY7wUyCggCEAAYogQYiQUyBwgDEAAY7wXSAQgzMDI5ajBqOagCALACAA&sourceid=chrome&source=chrome.ob&ie=UTF-8',
-      date: 'Oct 2025 - Jan 2026',
-      datetime: '2025-10',
-      description: t('exp_1_desc'),
-      tags: ['SIMRS Khanza', 'BPJS Bridging', 'Queue Management', 'Database']
-    },
-    {
-      title: t('exp_0_title'),
-      company: t('exp_0_company'),
-      location: t('exp_0_location'),
-      mapUrl: 'https://www.google.com/search?q=kartini+hospital&oq=kartini+hospital&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIMCAEQLhgnGK8BGMcBMgcIAhAAGIAEMgcIAhAAGIAEMgcIBBAAGIAEMgcIBRAAGIAEMgcIBhAAGIAEMgYIBxBFGDzSAQgzOTg0ajBqOagCALACAA&sourceid=chrome&source=chrome.ob&ie=UTF-8',
-      date: 'Jan 2026 - Jul 2026',
-      datetime: '2026-01',
-      description: t('exp_0_desc'),
-      tags: ['Network Infrastructure', 'Web Optimization', 'System Security']
-    }
-  ];
+  const renderResult = (result, metric) => {
+    const outcome = localized(result);
+    const measuredMetric = localized(metric);
+    if (!outcome && !measuredMetric) return null;
 
-  const rsmlMapUrl = 'https://www.google.com/search?q=rs+muhammadiyah+lamongan+maps&sca_esv=ef517bee04313233&sxsrf=AKL5yDipKZZhwCVxeSseB2D7TtiB6dZDGQ%3A1794791048941&ei=iFb6ao_4ONTp4-EPycalwQE&biw=746&bih=746&uact=5&oq=rs+muhammadiyah+lamongan+maps&gs_lp=Egxnd3Mtd2l6LXNlcnAiHXJzIG11aGFtbWFkaXlhaCBsYW1vbmdhbiBtYXBzMgUQIRigAUifDFDVAlibCXABeAGQAQCYAZUBoAH6A6oBAzMuMrgBA8gBAPgBAZgCBaAC8QTCAgUQABiABMICExAuGIAEGIoFGEMYtAcYxwEYrwHCAgoQABiABBiKBRhDwgIGEAAYFhgewgIIEAAYgAQYogSYAwCIBgGSBwMxLjSgB78dsgcDMS40uAfxBMIHBzItMS4yLjLIB1KACAE&sclient=gws-wiz-serp';
-  const rsmlTags = ['SIMRS Khanza', 'PACS / DICOM', 'EHR / EMR', 'Network Operations (NOC)', 'Server Room', 'CCTV Matrix'];
-
-  const lamonganNetwork = [
-    {
-      company: t('exp_sub_kalikapas_company'),
-      title: t('exp_sub_kalikapas_title'),
-      roleType: t('exp_sub_kalikapas_role'),
-      date: t('exp_sub_kalikapas_date'),
-      mapUrl: 'https://www.google.com/search?q=rs+muhammadiyah+kalikapas&oq=rs+muhammadiyah+kalikapas&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIKCAEQABgTGBYYHjIKCAIQABgTGBYYHjIKCAMQABiABBiiBDIHCAQQABjvBTIKCAUQABiiBBiJBTIHCAYQABjvBdIBCDg1OTJqMGo5qAIAsAIA&sourceid=chrome&source=chrome.ob&ie=UTF-8',
-      description: t('exp_sub_kalikapas_desc'),
-      tags: ['Hardware Diagnostics', 'Network On-Call', 'CCTV System']
-    },
-    {
-      company: t('exp_sub_klinikmuh_company'),
-      title: t('exp_sub_klinikmuh_title'),
-      roleType: t('exp_sub_klinikmuh_role'),
-      date: t('exp_sub_klinikmuh_date'),
-      mapUrl: 'https://www.google.com/search?q=klinik+muhammadiyah+lamongan&oq=klinik+muhammadiyah+lamongan+&gs_lcrp=EgZjaHJvbWUyCggAEEUYFhgeGDkyBwgBEAAYgAQyBwgCEAAYgAQyCAgDEAAYFhgeMggIBBAAGBYYHjIICAUQABgWGB4yCAgGEAAYFhgeMggIBxAAGBYYHjIICAgQABgWGB4yCAgJEAAYFhge0gEIMzkxMGowajmoAgCwAgA&sourceid=chrome&source=chrome.ob&ie=UTF-8',
-      description: t('exp_sub_klinikmuh_desc'),
-      tags: ['Clinical Helpdesk', 'Patient Records', 'Device Deployment']
-    },
-    {
-      company: t('exp_sub_suryamedika_company'),
-      title: t('exp_sub_suryamedika_title'),
-      roleType: t('exp_sub_suryamedika_role'),
-      date: t('exp_sub_suryamedika_date'),
-      mapUrl: 'https://www.google.com/search?q=klinik+surya+medika+mantup+lamongan&oq=klinik+surya+medika+mantup+lamongan+&gs_lcrp=EgZjaHJvbWUyCQgAEEUYORifBTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRigATIHCAUQIRiPAjIHCAYQIRiPAtIBCDUzODRqMGo5qAIAsAIA&sourceid=chrome&source=chrome.ob&ie=UTF-8',
-      description: t('exp_sub_suryamedika_desc'),
-      tags: ['Queue System', 'LAN Maintenance', 'Hardware Repair']
-    },
-    {
-      company: t('exp_sub_permatabunda_company'),
-      title: t('exp_sub_permatabunda_title'),
-      roleType: t('exp_sub_permatabunda_role'),
-      date: t('exp_sub_permatabunda_date'),
-      mapUrl: 'https://www.google.com/search?q=RSU.+PERMATA+BUNDA+BABAT&oq=RSU.+PERMATA+BUNDA+BABAT&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIICAEQABgWGB4yCAgCEAAYFhgeMgoIAxAAGAoYFhgeMggIBBAAGBYYHjIICAUQABgWGB4yCggGEAAYChgWGB4yCAgHEAAYFhgeMgcICBAAGO8FMgcICRAAGO8F0gEHMzc1ajBqOagCBrACAfEF1BdSzvcQZUQ&sourceid=chrome&source=chrome.ob&ie=UTF-8',
-      description: t('exp_sub_permatabunda_desc'),
-      tags: ['PBX / Telephony', 'Structured Cabling', 'Server Setup']
-    }
-  ];
-
-  const renderLocation = (location, mapUrl, company) => (
-    <a
-      className="experience-location"
-      href={mapUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={`${location} - ${company}`}
-    >
-      <IoLocationOutline aria-hidden="true" />
-      <span>{location}</span>
-      <IoOpenOutline aria-hidden="true" />
-    </a>
-  );
-
-  const renderTags = (tags) => (
-    <ul className="experience-tags" aria-label={t('skills_tab_skills')}>
-      {tags.slice(0, 4).map((tag) => (
-        <li key={tag}>{tag}</li>
-      ))}
-    </ul>
-  );
+    return (
+      <div className="experience-result">
+        <p>
+          <strong>{measuredMetric
+            ? (lang === 'id' ? 'Hasil terukur:' : 'Measured outcome:')
+            : (lang === 'id' ? 'Hasil:' : 'Outcome:')}</strong>{' '}
+          {outcome}
+        </p>
+        {measuredMetric && <p>{measuredMetric}</p>}
+      </div>
+    );
+  };
 
   return (
     <section className="experience-section" id="experience">
@@ -118,7 +182,11 @@ const Experience = () => {
         <ScrollReveal className="section-content">
           <p className="section-subtitle">{t('exp_subtitle')}</p>
           <h2 className="h3 section-title">{t('exp_title')}</h2>
-          <p className="section-text">{t('exp_text')}</p>
+          <p className="section-text experience-summary">
+            {lang === 'id'
+              ? 'Sejak 2019 mengelola SIMRS, jaringan, dan integrasi BPJS di rumah sakit dan klinik.'
+              : 'Since 2019, managing SIMRS, networks, and BPJS integration for hospitals and clinics.'}
+          </p>
         </ScrollReveal>
 
         <ScrollReveal
@@ -133,81 +201,7 @@ const Experience = () => {
               style={{ scaleY: shouldReduceMotion ? 1 : timelineScale }}
             />
           </div>
-          <ScrollReveal as="article" className="experience-row" variant="card" staggerChild>
-            <aside className="experience-meta">
-              <time dateTime="2019-07">{t('exp_rsml_date')}</time>
-              {renderLocation(t('exp_rsml_location'), rsmlMapUrl, t('exp_rsml_company'))}
-            </aside>
-
-            <div className="experience-detail">
-              <div className="experience-heading">
-                <h3>{t('exp_rsml_title')}</h3>
-                <span className="experience-heading-separator" aria-hidden="true">•</span>
-                <p className="experience-company">{t('exp_rsml_company')}</p>
-              </div>
-              <ul className="experience-impact">
-                <li>{t('exp_rsml_desc')}</li>
-              </ul>
-              {renderTags(rsmlTags)}
-
-              <div className={`experience-network ${isNetworkOpen ? 'is-open' : ''}`}>
-                <button
-                  type="button"
-                  className="experience-network-trigger"
-                  aria-expanded={isNetworkOpen}
-                  aria-controls="lamongan-network-list"
-                  onClick={() => setIsNetworkOpen((open) => !open)}
-                >
-                  <span className="experience-network-label">{t('exp_network_title')}</span>
-                  <span className="experience-network-actions">
-                    <span className="experience-network-count">{t('exp_network_count')}</span>
-                    <span className="experience-network-chevron" aria-hidden="true" />
-                  </span>
-                </button>
-                <div
-                  className="experience-network-content"
-                  id="lamongan-network-list"
-                  aria-hidden={!isNetworkOpen}
-                  inert={!isNetworkOpen}
-                >
-                  <div className="experience-network-content-inner">
-                    <p className="experience-network-intro">{t('exp_network_subtitle')}</p>
-                    <ul className="experience-network-list">
-                      {lamonganNetwork.map((unit, index) => (
-                        <li
-                          className="experience-network-item"
-                          key={unit.company}
-                          style={{ '--network-item-index': index }}
-                        >
-                          <div className="experience-network-meta">
-                            <time>{unit.date}</time>
-                            <span className="experience-network-meta-separator" aria-hidden="true">•</span>
-                            <span>{unit.roleType}</span>
-                          </div>
-                          <div className="experience-network-detail">
-                            <a href={unit.mapUrl} target="_blank" rel="noopener noreferrer">
-                              {unit.company}
-                              <IoOpenOutline aria-hidden="true" />
-                            </a>
-                            <div className="experience-network-heading">
-                              <h4>{unit.title}</h4>
-                              <span>{unit.roleType}</span>
-                            </div>
-                            <ul className="experience-impact">
-                              <li>{unit.description}</li>
-                            </ul>
-                            {renderTags(unit.tags)}
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </ScrollReveal>
-
-          {standardExperiences.map((experience) => (
+          {experiences.map((experience) => (
             <ScrollReveal
               as="article"
               className="experience-row"
@@ -216,20 +210,48 @@ const Experience = () => {
               key={experience.company}
             >
               <aside className="experience-meta">
-                <time dateTime={experience.datetime}>{experience.date}</time>
-                {renderLocation(experience.location, experience.mapUrl, experience.company)}
+                <time dateTime={experience.datetime}>{localized(experience.date)}</time>
+                <span className="experience-location">
+                  <IoLocationOutline aria-hidden="true" />
+                  {localized(experience.location)}
+                </span>
               </aside>
 
               <div className="experience-detail">
                 <div className="experience-heading">
-                  <h3>{experience.title}</h3>
+                  <h3>{localized(experience.title)}</h3>
                   <span className="experience-heading-separator" aria-hidden="true">•</span>
-                  <p className="experience-company">{experience.company}</p>
+                  <p className="experience-company">{localized(experience.company)}</p>
                 </div>
                 <ul className="experience-impact">
-                  <li>{experience.description}</li>
+                  <li>{localized(experience.description)}</li>
                 </ul>
-                {renderTags(experience.tags)}
+                {renderResult(experience.result, experience.metric)}
+                <ul className="experience-tags" aria-label={lang === 'id' ? 'Bidang pekerjaan' : 'Areas of work'}>
+                  {experience.tags[lang].map((tag) => <li key={tag}>{tag}</li>)}
+                </ul>
+
+                {experience.parallelWork && (
+                  <div className="experience-network is-open">
+                    <h4 className="experience-network-heading">{lang === 'id' ? 'Pekerjaan paralel di Lamongan' : 'Concurrent roles in Lamongan'}</h4>
+                    <ul className="experience-network-list">
+                      {experience.parallelWork.map((work) => (
+                        <li className="experience-network-item" key={work.company}>
+                          <div className="experience-network-meta">
+                            <time>{localized(work.date)}</time>
+                            <span className="experience-network-meta-separator" aria-hidden="true">•</span>
+                            <span>{localized(work.type)}</span>
+                          </div>
+                          <div className="experience-network-detail">
+                            <h4>{work.company}</h4>
+                            <p>{localized(work.description)}</p>
+                            {renderResult(work.result, work.metric)}
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
             </ScrollReveal>
           ))}

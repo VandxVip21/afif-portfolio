@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <style>
+    .background { fill: #0f172a; }
+    .letter { fill: #f8fafc; }
+    .accent { fill: #60a5fa; }
+    @media (prefers-color-scheme: light) {
+      .background { fill: #f8fafc; }
+      .letter { fill: #1e293b; }
+      .accent { fill: #3b82f6; }
+    }
+  </style>
+  <rect class="background" x="2" y="2" width="60" height="60" rx="16" />
+  <path class="letter" fill-rule="evenodd" d="M12 49 24.7 16.4A3.6 3.6 0 0 1 28 14h6a3.6 3.6 0 0 1 3.3 2.4L50 49h-9.5l-2.3-6.5H23.8L21.5 49Zm14.5-14.2h9L31 22.5Z" />
+  <circle class="accent" cx="53" cy="48" r="3.5" />
+</svg>

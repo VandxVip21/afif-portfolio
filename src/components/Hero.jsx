@@ -1,4 +1,3 @@
-import { IoLogoLinkedin } from 'react-icons/io5';
 import { useRef } from 'react';
 import { m, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
@@ -26,29 +25,23 @@ const Hero = () => {
           }}
         >
           <picture>
-            <source srcSet="./assets/images/afif.jpg" media="(min-width: 768px)" />
-            <source srcSet="./assets/images/afif.jpg" media="(min-width: 500px)" />
-            <img src="./assets/images/afif.jpg" alt="Muhammad Afif Abiyyu" className="w-100" />
+            <img src="/assets/images/afif-hero.webp" alt="Muhammad Afif Abiyyu" className="w-100" fetchPriority="high" />
           </picture>
         </m.figure>
       </ScrollReveal>
 
       <ScrollReveal className="hero-content" variant="right">
+        <p className="section-subtitle">{t('hero_eyebrow')}</p>
         <h2 className="h2 hero-title">{t('hero_title')}</h2>
         <p className="section-text" style={{ marginBottom: '2rem' }}>{t('hero_subtitle')}</p>
-        <a href="#contact" className="btn btn-primary">{t('hero_btn')}</a>
+        <div className="hero-actions">
+          <a href="https://wa.me/6287714001013" className="btn btn-primary" target="_blank" rel="noopener noreferrer">{t('hero_btn')}</a>
+          <a href="mailto:maffabiyyu@gmail.com" className="btn btn-secondary">{t('hero_email')}</a>
+          <a href="/assets/file/CV%20-%20Muhammad%20Afif%20Abiyyu.pdf" className="btn btn-secondary" target="_blank" rel="noopener noreferrer">{t('about_btn_cv')}</a>
+        </div>
       </ScrollReveal>
 
-      <ul className="hero-social-list reveal delay-200">
-        <li>
-          <a href="https://www.linkedin.com/in/m-afif-abiyyu-a57a4a30b" className="hero-social-link" target="_blank" rel="noopener noreferrer">
-            <IoLogoLinkedin />
-            <div className="tooltip">Linkedin</div>
-          </a>
-        </li>
-      </ul>
-
-      <a href="#stats" className="scroll-down reveal delay-300">{t('hero_scroll')}</a>
+      <a href="#experience" className="scroll-down reveal delay-300">{t('hero_scroll')}</a>
     </section>
   );
 };

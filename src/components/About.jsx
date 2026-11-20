@@ -9,14 +9,16 @@ const About = () => {
     <section className="about" id="about">
       <ScrollReveal as="figure" className="about-banner" variant="left">
         <img
-          src="./assets/images/Afif.jpeg"
+          src="/assets/images/Afif-profile.jpg"
           alt="Muhammad Afif Abiyyu"
           className="w-100"
+          loading="lazy"
+          decoding="async"
         />
         <div className="about-badge">
           <IoRibbonOutline className="about-badge-icon" />
           <div>
-            <strong>8+</strong>
+            <strong>5+</strong>
             <span>{t('stat_years')}</span>
           </div>
         </div>
@@ -34,9 +36,9 @@ const About = () => {
         </p>
 
         <div className="btn-group">
-          <button className="btn btn-secondary">{t('about_btn_hire')}</button>
+          <a href="https://wa.me/6287714001013" className="btn btn-secondary" target="_blank" rel="noopener noreferrer">{t('about_btn_hire')}</a>
 
-          <a href="./assets/file/CV - Muhammad Afif Abiyyu.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-primary">{t('about_btn_cv')}</a>
+          <a href="/assets/file/CV%20-%20Muhammad%20Afif%20Abiyyu.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-primary">{t('about_btn_cv')}</a>
         </div>
       </ScrollReveal>
     </section>

@@ -4,13 +4,13 @@ import { domAnimation, LazyMotion, useReducedMotion } from 'framer-motion';
 import 'lenis/dist/lenis.css';
 import Header from './components/Header';
 import Hero from './components/Hero';
-import Stats from './components/Stats';
 import About from './components/About';
 import Skills from './components/Skills';
 import Experience from './components/Experience';
 import Projects from './components/Projects';
 import Education from './components/Education';
 import Contact from './components/Contact';
+import Services from './components/Services';
 import Inbox from './components/Inbox';
 import ScrollProgress from './components/ScrollProgress';
 import { LanguageProvider } from './context/LanguageContext';
@@ -41,12 +41,12 @@ function AppContent() {
       <main>
         <article className="container">
           <Hero />
-          <Stats />
           <About />
           <Skills />
           <Experience />
           <Projects />
           <Education />
+          <Services />
           <Contact />
         </article>
       </main>
